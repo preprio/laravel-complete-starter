@@ -1,0 +1,12 @@
+{
+    Persons {
+        items {
+            _id
+            full_name
+            profile_pic {
+                url
+            }
+            bio
+        }
+    }
+}
