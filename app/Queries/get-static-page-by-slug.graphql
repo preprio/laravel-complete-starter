@@ -3,7 +3,6 @@ query ($slug: String) {
         _id
         title
         _slug
-        type
         stack {
             __typename
             ... on PageHeader {
