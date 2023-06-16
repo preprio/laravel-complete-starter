@@ -1,16 +1,16 @@
 @if($stack)
-    @foreach($stack as $stack)
+    @foreach($stack as $element)
 
-        @if(data_get($stack,'__typename') === 'PageHeader')
-            <x-page-header :data="$stack"/>
-        @elseif(data_get($stack,'__typename') === 'ImageAndText')
-            <x-image-and-text :data="$stack"/>
-        @elseif(data_get($stack,'__typename') === 'ArticleCollection')
-            <x-article-collection :data="$stack"/>
-        @elseif(data_get($stack,'__typename') === 'ProductCollection')
-            <x-product-collection :data="$stack"/>
-        @elseif(data_get($stack,'__typename') === 'CallToAction')
-            <x-call-to-action :data="$stack"/>
+        @if(data_get($element,'__typename') === 'PageHeader')
+            <x-page-header :data="$element"/>
+        @elseif(data_get($element,'__typename') === 'ImageAndText')
+            <x-image-and-text :data="$element"/>
+        @elseif(data_get($element,'__typename') === 'ArticleCollection')
+            <x-article-collection :data="$element"/>
+        @elseif(data_get($element,'__typename') === 'ProductCollection')
+            <x-product-collection :data="$element"/>
+        @elseif(data_get($element,'__typename') === 'CallToAction')
+            <x-call-to-action :data="$element"/>
         @endif
 
     @endforeach
