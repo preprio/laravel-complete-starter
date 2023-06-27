@@ -1,6 +1,6 @@
 ## Laravel 10 Starter
 
-Look at the Laravel [documentation](https://docs.prepr.io/connecting-front-end-apps/laravel) to learn more.
+Look at the [Complete guide to Laravel and Prepr personalization](https://docs.prepr.io/connecting-front-end-apps/laravel-complete-guide) to learn more.
 
 ## Add the environment file
 
