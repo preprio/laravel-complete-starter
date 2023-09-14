@@ -4,7 +4,7 @@ use App\Http\Controllers\ABTestingController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\LivestreamController;
 use App\Http\Controllers\NavigationController;
-use App\Http\Controllers\PagePatternController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\PersonalizationController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Route::get('/navigation', NavigationController::class);
 
-Route::get('/page-pattern/{slug}', PagePatternController::class);
+Route::get('/page/{slug}', PageController::class);
 
 Route::get('/blog', [BlogController::class, 'index']);
 Route::get('/blog/{slug}', [BlogController::class, 'show']);

@@ -29,7 +29,7 @@
         <div id="mega-menu-full-cta" class="hidden items-center justify-between w-full md:flex md:w-auto md:grow md:basis-auto">
             <ul class="flex flex-col pl-4 text-sm font-medium md:flex-row md:space-x-8 md:mt-0">
                 <li>
-                    <a href="{{ url('/page-pattern/home') }}" class="{{ Request::is('page-pattern*') ? 'text-violet-600 font-semibold' : 'text-gray-700 font-medium' }} block py-2 pr-4 border-t border-b border-gray-100 md:pl-3 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-violet-700 md:p-0 dark:text-gray-400 md:dark:hover:text-violet-500 dark:hover:bg-gray-700 dark:hover:text-violet-500 md:dark:hover:bg-transparent dark:border-gray-700">
+                    <a href="{{ url('/page/home') }}" class="{{ Request::is('page*') ? 'text-violet-600 font-semibold' : 'text-gray-700 font-medium' }} block py-2 pr-4 border-t border-b border-gray-100 md:pl-3 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-violet-700 md:p-0 dark:text-gray-400 md:dark:hover:text-violet-500 dark:hover:bg-gray-700 dark:hover:text-violet-500 md:dark:hover:bg-transparent dark:border-gray-700">
                         Page
                     </a>
                 </li>

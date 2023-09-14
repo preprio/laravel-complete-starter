@@ -10,13 +10,19 @@ class PersonalizationController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke()
+    public function __invoke(Request $request)
     {
+        $segment = $request->get('segment');
+
+        if (empty($segment)) {
+            $segment = 'None';
+        }
+
         $response = Http::prepr([
             'query' => 'get-page-by-slug',
             'variables' => [
                 'slug' => 'home-page-personalization',
-                'segment' => request()->get('segment', ''),
+                'segment' => $segment
             ],
         ]);
 
