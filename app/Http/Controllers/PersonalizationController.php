@@ -22,7 +22,7 @@ class PersonalizationController extends Controller
             'query' => 'get-page-by-slug',
             'variables' => [
                 'slug' => 'home-page-personalization',
-                'segment' => $segment
+                'segment' => $segment,
             ],
         ]);
 

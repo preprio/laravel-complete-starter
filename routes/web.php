@@ -1,12 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ABTestingController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\LivestreamController;
 use App\Http\Controllers\NavigationController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PersonalizationController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
