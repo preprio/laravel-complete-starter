@@ -23,8 +23,8 @@ class PageController extends Controller
             'query' => 'get-page-by-slug',
             'variables' => [
                 'slug' => $slug,
-                'segment' => ''
-//                'segment' => $segment,
+                'segment' => '',
+                //                'segment' => $segment,
             ],
         ]);
 
