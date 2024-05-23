@@ -1,4 +1,4 @@
-## Laravel 10 Starter
+## Laravel Complete Starter
 
 Look at the [Complete guide to Laravel and Prepr personalization](https://docs.prepr.io/connecting-front-end-apps/laravel-complete-guide) to learn more.
 
@@ -32,6 +32,15 @@ npm run dev
 
 ``` 
 php artisan key:generate
+```
+
+
+### Create Database File
+
+Create the SQLite database file used in this project. If you'd like to use a different database, check out the [Laravel docs](https://laravel.com/docs/11.x/database) for more details.
+
+``` 
+php artisan migrate
 ```
 
 ## Development Server
