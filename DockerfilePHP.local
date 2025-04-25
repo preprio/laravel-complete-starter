@@ -1,0 +1,87 @@
+FROM node:22 AS node
+
+FROM php:8.3-fpm
+
+# -- Copy over Node.js, NPM en UglifyJS correct
+COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
+COPY --from=node /usr/local/bin/node /usr/local/bin/node
+
+# -- Maak correcte symlinks
+RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm
+
+# -- Install locale support
+RUN apt-get update \
+    && DEBIAN_FRONTEND="noninteractive" apt-get install locales -y --no-install-recommends \
+    && sed -i '/C.UTF-8/s/^# //g' /etc/locale.gen \
+    && sed -i '/nl_NL.UTF-8/s/^# //g' /etc/locale.gen \
+    && locale-gen \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV LANG nl_NL.UTF-8
+ENV LANGUAGE nl_NL:nl
+ENV LC_ALL C.UTF-8
+
+ENV PHP_POST_MAX_SIZE 8M
+ENV PHP_UPLOAD_MAX_FILESIZE 2M
+ENV PHP_MEMORY_LIMIT 1024M
+ENV PHP_MAX_EXECUTION_TIME 300
+ENV PHP_MAX_INPUT_VARS 100000
+
+ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS="0"
+ENV PHP_OPCACHE_MAX_ACCELERATED_FILES="10000"
+ENV PHP_OPCACHE_MEMORY_CONSUMPTION="192"
+ENV PHP_OPCACHE_MAX_WASTED_PERCENTAGE="10"
+ENV PHP_OPCACHE_ENABLED="0"
+
+# -- Install common tools and libraries
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    file \
+    curl \
+    git \
+    zip \
+    unzip \
+    vim \
+    openssl \
+    #PHP intl module
+    libicu-dev \
+    #PHP image module + libs
+    libjpeg-dev \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    libgd-dev \
+    #PHP zip module
+    libz-dev \
+    zlib1g-dev && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/*
+
+# -- Install Zip for spreadsheet
+RUN apt-get update
+RUN apt-get install -y libzip-dev
+RUN docker-php-ext-install zip
+
+# -- Install PHP database modules
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+
+# -- Install PHP-Redis
+RUN pecl install redis \
+    && docker-php-ext-enable redis
+
+# -- Use the default dev/production configuration
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+RUN echo 'post_max_size = ${PHP_POST_MAX_SIZE}' >> /usr/local/etc/php/conf.d/z-prepr.ini && \
+    echo 'upload_max_filesize = ${PHP_UPLOAD_MAX_FILESIZE}' >> /usr/local/etc/php/conf.d/z-prepr.ini && \
+    echo 'memory_limit = ${PHP_MEMORY_LIMIT}' >> /usr/local/etc/php/conf.d/z-prepr.ini && \
+    echo 'max_execution_time = ${PHP_MAX_EXECUTION_TIME}' >> /usr/local/etc/php/conf.d/z-prepr.ini && \
+    echo 'max_input_vars = ${PHP_MAX_INPUT_VARS}' >> /usr/local/etc/php/conf.d/z-prepr.ini
+
+# Set working directory
+WORKDIR /var/www/html
+# -- Install composer
+
+RUN curl -sS https://getcomposer.org/installer | \
+    php -- --install-dir=/usr/local/bin --filename=composer

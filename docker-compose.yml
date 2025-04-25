@@ -1,0 +1,80 @@
+version: '3'
+
+networks:
+  internal:
+    driver: bridge
+
+services:
+  redis:
+    image: redis:latest
+    restart: unless-stopped
+    networks:
+      - internal
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 100M
+        reservations:
+          cpus: '0.10'
+          memory: 20M
+
+  mysql:
+    image: mariadb:10.6
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${LOCAL_VPN_IP}:3306:3306"
+    environment:
+      MYSQL_DATABASE: homestead
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - internal
+
+  php:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: DockerfilePHP.local
+    depends_on:
+      - redis
+      - mysql
+    command: sh -c "composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev && php-fpm && php artisan migrate --force"
+    volumes:
+      - ./:/var/www/html:delegated
+      - ./:/usr/share/nginx/html
+    networks:
+      - internal
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2000M
+        reservations:
+          cpus: '0.75'
+          memory: 512M
+
+  nginx:
+    image: nginxinc/nginx-unprivileged:1.24.0
+    restart: unless-stopped
+    ports:
+      - "${LOCAL_VPN_IP}:8010:8080"
+    networks:
+      - internal
+    depends_on:
+      - php
+    volumes:
+      - ./docker/nginx/:/etc/nginx/conf.d
+      - ./public/:/usr/share/nginx/html
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 50M
+        reservations:
+          cpus: '0.50'
+          memory: 20M
