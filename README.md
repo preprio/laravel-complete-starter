@@ -18,7 +18,7 @@ In the .env file replace` <YOUR-PREPR-ENDPOINT>` with the *API URL* of the Prepr
 
 ## Add the Prepr tracking pixel
 
-Go to the `resources/views/pages/index.blade.php` file and replace the placeholder <!-- Your Prepr Tracking Code --> with your own tracking code in Prepr.
+Go to the `resources/views/pages/index.blade.php` file and replace the placeholder "<!-- Your Prepr Tracking Code -->" with your own tracking code in Prepr.
 
 ![event tracking page](https://assets-site.prepr.io//1j41fnhj1305-tracking-code.png)
 
