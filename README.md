@@ -12,7 +12,7 @@ cp .env.example .env
 
 ## Update the environment file
 
-In the .env file replace` <YOUR-PREPR-ENDPOINT>` with the *API URL* of the Prepr *GraphQL Preview* access token from your Acme Lease Demo environment.
+In the .env file replace `<YOUR-PREPR-ENDPOINT>` with the *API URL* of the Prepr *GraphQL Preview* access token from your Acme Lease Demo environment.
 
 ![preview API URL](https://assets-site.prepr.io//35k5a4g45wuy-preview-access-token.png)
 
