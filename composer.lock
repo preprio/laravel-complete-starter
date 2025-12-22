@@ -2585,16 +2585,16 @@
         },
         {
             "name": "preprio/laravel-graphql-sdk",
-            "version": "1.1.0",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/preprio/laravel-graphql-sdk.git",
-                "reference": "6c216195ec11dc037cf38329f78f1a114ddbf508"
+                "reference": "80656f1bdb9f9127ff178a1a6663d06f82b16623"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/preprio/laravel-graphql-sdk/zipball/6c216195ec11dc037cf38329f78f1a114ddbf508",
-                "reference": "6c216195ec11dc037cf38329f78f1a114ddbf508",
+                "url": "https://api.github.com/repos/preprio/laravel-graphql-sdk/zipball/80656f1bdb9f9127ff178a1a6663d06f82b16623",
+                "reference": "80656f1bdb9f9127ff178a1a6663d06f82b16623",
                 "shasum": ""
             },
             "type": "library",
@@ -2627,9 +2627,9 @@
             ],
             "support": {
                 "issues": "https://github.com/preprio/laravel-graphql-sdk/issues",
-                "source": "https://github.com/preprio/laravel-graphql-sdk/tree/1.1.0"
+                "source": "https://github.com/preprio/laravel-graphql-sdk/tree/1.1.2"
             },
-            "time": "2024-01-30T11:19:01+00:00"
+            "time": "2025-12-14T16:07:34+00:00"
         },
         {
             "name": "psr/clock",
@@ -8114,12 +8114,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }
