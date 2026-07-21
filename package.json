@@ -18,6 +18,11 @@
   "overrides": {
     "form-data": ">=4.0.6",
     "shell-quote": ">=1.8.4",
-    "axios": "1.18.0"
+    "axios": "1.18.0",
+    "laravel/pail": "1.2.6",
+    "league/commonmark": "2.8.2",
+    "phpunit/phpunit": "11.5.50",
+    "preprio/laravel-graphql-sdk": "1.1.2",
+    "symfony/http-foundation": "7.4.1"
   }
 }
